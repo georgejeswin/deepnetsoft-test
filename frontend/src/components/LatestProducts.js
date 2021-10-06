@@ -15,7 +15,7 @@ const LatestProducts = () => {
           <ProductCard
             title={product.name}
             price={product.price}
-            img={product.image}
+            // img={product.image}
           />
         ))}
       </div>

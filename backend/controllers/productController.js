@@ -29,17 +29,17 @@ export const getProductsWithId = async (req, res) => {
 
 export const postProducts = async (req, res) => {
   try {
-    const file = req.file;
-    if (!file) return res.status(400).send("No image in the req ");
-    const fileName = req.file.filename;
-    const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
-    const imagepath = `${basePath}${fileName}`;
+    // const file = req.file;
+    // if (!file) return res.status(400).send("No image in the req ");
+    // const fileName = req.file.filename;
+    // const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
+    // const imagepath = `${basePath}${fileName}`;
     let product = new Product({
       name: req.body.name,
       category: req.body.category,
       quantity: req.body.quantity,
       price: req.body.price,
-      image: imagepath,
+      // image: imagepath,
     });
 
     product = await product.save();
