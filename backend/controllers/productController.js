@@ -32,7 +32,7 @@ export const postProducts = async (req, res) => {
     const file = req.file;
     if (!file) return res.status(400).send("No image in the req ");
     const fileName = req.file.filename;
-    const basepath = `${req.protocol}://${req.get("host")}/public/uploads/`;
+    const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
     const imagepath = `${basePath}${fileName}`;
     let product = new Product({
       name: req.body.name,
