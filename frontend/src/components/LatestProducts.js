@@ -13,6 +13,7 @@ const LatestProducts = () => {
       <div className="latestProducts__list">
         {latestProducts.map((product) => (
           <ProductCard
+            key={product._id}
             title={product.name}
             price={product.price}
             // img={product.image}

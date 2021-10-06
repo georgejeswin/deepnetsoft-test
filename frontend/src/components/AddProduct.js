@@ -8,7 +8,7 @@ const AddProduct = () => {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [category, setCategory] = useState("category");
-  const [image, setImage] = useState("");
+  // const [image, setImage] = useState("");
 
   const dispatch = useDispatch();
 
@@ -27,11 +27,11 @@ const AddProduct = () => {
     setPrice("");
     setQuantity("");
     setCategory("");
-    setImage("");
+    // setImage("");
   };
   return (
     <div className="addproduct">
-      <form className="" onSubmit={handleSubmit} className="addproduct__form">
+      <form onSubmit={handleSubmit} className="addproduct__form">
         <h1 className="formStyle__heading">Add Product</h1>
         {/* <input
           type="file"
