@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import userRouter from "./routes/users.js";
+import productRouter from "./routes/products.js";
 
 dotenv.config({ path: ".env" });
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //routes middlewares
 app.use("/api/users", userRouter);
+app.use("/api/products", productRouter);
 
 app.get("/", (req, res) => {
   res.status(200).send("Working");
