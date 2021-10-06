@@ -20,6 +20,7 @@ router.post("/register", async (req, res) => {
   try {
     let user = new User({
       name: req.body.name,
+      username: req.body.username,
       email: req.body.email,
       passwordHash: bcrypt.hashSync(req.body.password, 10),
       phone: req.body.phone,
@@ -38,7 +39,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ username: req.body.username });
     if (!user) return res.status(400).send("cannot find the user");
     if (user && bcrypt.compareSync(req.body.password, user.passwordHash)) {
       const token = jwt.sign(
@@ -48,7 +49,7 @@ router.post("/login", async (req, res) => {
         process.env.secret,
         { expiresIn: "1w" }
       );
-      res.status(200).send({ user: user.email, token: token });
+      res.status(200).send({ user: user.username, token: token });
     } else {
       res.status(400).send("password is wrong");
     }
