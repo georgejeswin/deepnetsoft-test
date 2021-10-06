@@ -1,40 +1,23 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import "./LatestProducts.css";
+import { useSelector } from "react-redux";
 
 const LatestProducts = () => {
+  const products = useSelector((state) => state.products);
+  const latestProducts = products.slice(products.length - 4, products.length);
+
   return (
     <div className="latestProducts">
       <h1 className="dbScreen__heading">Latest Products</h1>
       <div className="latestProducts__list">
-        <ProductCard
-          title={"Product1"}
-          price={"5333"}
-          img={
-            "https://dlcdnwebimgs.asus.com/gain/1e5e232e-8b4c-470c-8381-a2df8d38880b/w800"
-          }
-        />
-        <ProductCard
-          title={"Product1"}
-          price={"5333"}
-          img={
-            "https://dlcdnwebimgs.asus.com/gain/1e5e232e-8b4c-470c-8381-a2df8d38880b/w800"
-          }
-        />
-        <ProductCard
-          title={"Product1"}
-          price={"5333"}
-          img={
-            "https://dlcdnwebimgs.asus.com/gain/1e5e232e-8b4c-470c-8381-a2df8d38880b/w800"
-          }
-        />
-        <ProductCard
-          title={"Product1"}
-          price={"5333"}
-          img={
-            "https://dlcdnwebimgs.asus.com/gain/1e5e232e-8b4c-470c-8381-a2df8d38880b/w800"
-          }
-        />
+        {latestProducts.map((product) => (
+          <ProductCard
+            title={product.name}
+            price={product.price}
+            img={product.image}
+          />
+        ))}
       </div>
     </div>
   );

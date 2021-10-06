@@ -6,10 +6,16 @@ const AddProduct = () => {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [category, setCategory] = useState("category");
+  const [image, setImage] = useState("");
   return (
     <div className="addproduct">
       <form className="" onSubmit={() => {}} className="addproduct__form">
         <h1 className="formStyle__heading">Add Product</h1>
+        <input
+          type="file"
+          className="formStyle__input"
+          onChange={(e) => setImage(e.target.files)}
+        />
         <input
           type="text"
           className="formStyle__input"

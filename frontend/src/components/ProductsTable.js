@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "./ProductsTable.css";
 
 const ProductsTable = () => {
+  const products = useSelector((state) => state.products);
   return (
     <table className="productsTable" width={500}>
       <tr className="productsTable__head">
@@ -13,15 +15,17 @@ const ProductsTable = () => {
         <th>Edit</th>
         <th>Delete</th>
       </tr>
-      <tr>
-        <td>
-          <input type="checkbox" name="productChek" id="productCheck" />
-        </td>
-        <td>January</td>
-        <td>$100</td>
-        <td>January</td>
-        <td>$100</td>
-      </tr>
+      {products.map((product) => (
+        <tr>
+          <td>
+            <input type="checkbox" name="productChek" id="productCheck" />
+          </td>
+          <td>{product.name}</td>
+          <td>{product.price}</td>
+          <td>Edit</td>
+          <td>Delete</td>
+        </tr>
+      ))}
     </table>
   );
 };
