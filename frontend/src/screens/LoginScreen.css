@@ -1,0 +1,9 @@
+.loginScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.loginScreen__logo {
+  width: 30%;
+  margin-bottom: 5%;
+}
