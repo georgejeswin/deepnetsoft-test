@@ -17,7 +17,7 @@ const DashboardScreen = () => {
 
   useEffect(() => {
     dispatch(getProducts());
-    console.log(auth.authData);
+    // console.log(auth.authData);
     if (auth.authData === null) {
       history.push("/");
     }
@@ -40,7 +40,7 @@ const DashboardScreen = () => {
       </Link>
       <div className="dbScreen__search">
         <SearchForm />
-        <ProductsTable />
+        {/* <ProductsTable /> */}
       </div>
       <div className="latestProducts">
         <LatestProducts />
