@@ -3,6 +3,7 @@ import "./App.css";
 import AddProductScreen from "./screens/AddProductScreen";
 import DashboardScreen from "./screens/DashboardScreen";
 import Login from "./screens/LoginScreen";
+import { Redirect } from "react-router";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <Route exact path="/" component={Login} />
         <Route exact path="/dashboard" component={DashboardScreen} />
         <Route exact path="/addproduct" component={AddProductScreen} />
+        <Redirect to="/" />
       </Switch>
     </Router>
   );

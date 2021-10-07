@@ -5,15 +5,22 @@ import ProductsTable from "../components/ProductsTable";
 import SearchForm from "../components/SearchForm";
 import Logo from "../images/logo.png";
 import "./DashboardScreen.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../actions/productActions";
+import { useHistory } from "react-router";
 
 const DashboardScreen = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getProducts());
-  }, [dispatch]);
+    console.log(auth.authData);
+    if (auth.authData === null) {
+      history.push("/");
+    }
+  }, [dispatch, auth.authData, history]);
 
   return (
     <div className="dbScreen">

@@ -7,6 +7,7 @@ import {
   postProducts,
   updateProducts,
 } from "../controllers/productController.js";
+import authJwt from "../middlewares/auth.js";
 
 const FILE_TYPE_MAP = {
   "image/png": "png",
@@ -36,10 +37,10 @@ router.get("/", getProducts);
 
 router.get("/:id", getProductsWithId);
 
-router.post("/", uploadOptions.single("image"), postProducts);
+router.post("/", uploadOptions.single("image"), authJwt, postProducts);
 
-router.put("/:id", uploadOptions.single("image"), updateProducts);
+router.put("/:id", uploadOptions.single("image"), authJwt, updateProducts);
 
-router.delete("/:id", deleteProduct);
+router.delete("/:id", authJwt, deleteProduct);
 
 export default router;

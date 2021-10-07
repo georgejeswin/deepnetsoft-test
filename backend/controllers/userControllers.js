@@ -41,12 +41,13 @@ export const loginUser = async (req, res) => {
     if (user && bcrypt.compareSync(req.body.password, user.passwordHash)) {
       const token = jwt.sign(
         {
-          userId: user.id,
+          userId: user._id,
+          username: user.username,
         },
         process.env.secret,
         { expiresIn: "1w" }
       );
-      res.status(200).send({ user: user.username, token: token });
+      res.status(200).send({ user: user.username, token });
     } else {
       res.status(400).send("password is wrong");
     }
