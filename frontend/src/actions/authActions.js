@@ -25,3 +25,12 @@ export const signup = (formData, history) => async (dispatch) => {
     console.log(error);
   }
 };
+export const logout = (history) => async (dispatch) => {
+  try {
+    dispatch({ type: "LOGOUT" });
+
+    history.push("/");
+  } catch (error) {
+    console.log(error);
+  }
+};

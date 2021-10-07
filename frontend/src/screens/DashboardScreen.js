@@ -8,6 +8,7 @@ import "./DashboardScreen.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../actions/productActions";
 import { useHistory } from "react-router";
+import { logout } from "../actions/authActions";
 
 const DashboardScreen = () => {
   const dispatch = useDispatch();
@@ -22,9 +23,17 @@ const DashboardScreen = () => {
     }
   }, [dispatch, auth.authData, history]);
 
+  const handleLogout = () => {
+    dispatch(logout(history));
+  };
   return (
     <div className="dbScreen">
-      <img src={Logo} alt="DeepNetSoft" className="dbScreen__logo" />
+      <div className="dbScreen__nav">
+        <img src={Logo} alt="DeepNetSoft" className="dbScreen__logo" />
+        <button className="dbScreen__button" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
       <h1 className="dbScreen__heading">Dashboard</h1>
       <Link to={"/addproduct"} className="dbScreen__link">
         <button className="dbScreen__button">Add Product</button>
