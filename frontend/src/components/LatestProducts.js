@@ -16,7 +16,6 @@ const LatestProducts = () => {
             key={product._id}
             title={product.name}
             price={product.price}
-            // img={product.image}
           />
         ))}
       </div>

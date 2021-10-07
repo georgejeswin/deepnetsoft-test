@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import LatestProducts from "../components/LatestProducts";
-import ProductsTable from "../components/ProductsTable";
 import SearchForm from "../components/SearchForm";
 import Logo from "../images/logo.png";
 import "./DashboardScreen.css";
@@ -17,7 +16,6 @@ const DashboardScreen = () => {
 
   useEffect(() => {
     dispatch(getProducts());
-    // console.log(auth.authData);
     if (auth.authData === null) {
       history.push("/");
     }
@@ -40,7 +38,6 @@ const DashboardScreen = () => {
       </Link>
       <div className="dbScreen__search">
         <SearchForm />
-        {/* <ProductsTable /> */}
       </div>
       <div className="latestProducts">
         <LatestProducts />

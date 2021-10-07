@@ -1,15 +1,10 @@
-import express, { urlencoded } from "express";
+import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import userRouter from "./routes/users.js";
 import productRouter from "./routes/products.js";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 dotenv.config({ path: ".env" });
 
@@ -25,7 +20,6 @@ app.use(express.urlencoded({ extended: true }));
 //routes middlewares
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
-app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
 
 app.get("/", (req, res) => {
   res.status(200).send("Working");

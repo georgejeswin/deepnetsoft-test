@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import "./Addproduct.css";
 import { useDispatch } from "react-redux";
 import { createProduct } from "../actions/productActions";
+import { useHistory } from "react-router";
 
 const AddProduct = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [category, setCategory] = useState("category");
-  // const [image, setImage] = useState("");
+  const [category, setCategory] = useState("categories");
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,26 +20,19 @@ const AddProduct = () => {
       price,
       quantity,
       category,
-      // image,
     };
     dispatch(createProduct(formData));
     alert("New Product added successfully");
+    history.push("/dashboard");
     setName("");
     setPrice("");
     setQuantity("");
     setCategory("");
-    // setImage("");
   };
   return (
     <div className="addproduct">
       <form onSubmit={handleSubmit} className="addproduct__form">
         <h1 className="formStyle__heading">Add Product</h1>
-        {/* <input
-          type="file"
-          className="formStyle__input"
-          onChange={(e) => setImage(e.target.files[0])}
-          // required
-        /> */}
         <input
           type="text"
           className="formStyle__input"
@@ -69,8 +63,10 @@ const AddProduct = () => {
           className="formStyle__input"
           onChange={(e) => setCategory(e.target.value)}
           required
+          value={category}
         >
-          <option value="mobile">mobiles</option>
+          <option value="mobiles">mobiles</option>
+          <option value="computers">computers</option>
           <option value="laptops">laptops</option>
           <option value="electronics">electronics</option>
           <option value="fashion">fashion</option>

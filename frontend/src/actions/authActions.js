@@ -10,6 +10,7 @@ export const login = (formData, history) => async (dispatch) => {
     history.push("/dashboard");
   } catch (error) {
     console.log(error);
+    alert("Username and Password doesn't match");
   }
 };
 

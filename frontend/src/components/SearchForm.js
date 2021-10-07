@@ -3,19 +3,30 @@ import { useSelector } from "react-redux";
 
 const SearchForm = () => {
   const [text, setText] = useState("");
+  const [category, setCategory] = useState("categories");
   const products = useSelector((state) => state.products);
   const [searchedProducts, setSearchedProducts] = useState([]);
   useEffect(() => {
     setSearchedProducts(products);
-  }, []);
+  }, [products]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSearchedProducts(
-      products.filter((product) =>
-        product.name.toLowerCase().includes(text.toLowerCase())
-      )
-    );
+    if (category === "categories") {
+      setSearchedProducts(
+        products.filter((product) =>
+          product.name.toLowerCase().includes(text.toLowerCase())
+        )
+      );
+    } else {
+      setSearchedProducts(
+        products.filter(
+          (product) =>
+            product.name.toLowerCase().includes(text.toLowerCase()) &&
+            product.category.includes(category)
+        )
+      );
+    }
   };
 
   return (
@@ -27,11 +38,17 @@ const SearchForm = () => {
           placeholder="search"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          required
         />
-        <select name="category" id="category" className="formStyle__select">
+        <select
+          name="category"
+          id="category"
+          className="formStyle__select"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
           <option value="categories">categories</option>
           <option value="mobile">mobiles</option>
+          <option value="computers">computers</option>
           <option value="laptops">laptops</option>
           <option value="electronics">electronics</option>
           <option value="fashion">fashion</option>

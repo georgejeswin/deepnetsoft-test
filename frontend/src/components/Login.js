@@ -12,12 +12,16 @@ const Login = () => {
   const history = useHistory();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = {
-      username,
-      password,
-    };
-    dispatch(login(formData, history));
+    try {
+      e.preventDefault();
+      const formData = {
+        username,
+        password,
+      };
+      dispatch(login(formData, history));
+    } catch (error) {
+      alert(error);
+    }
   };
   return (
     <div className="login">
